@@ -28,12 +28,15 @@ WORKDIR opt
 WORKDIR /workspace/single_stage_detector
 
 COPY requirements.txt .
+COPY . .
+
 RUN pip install --no-cache-dir https://github.com/mlperf/logging/archive/9ea0afa.zip \
- && pip install --no-cache-dir -r requirements.txt
+ && pip install --no-cache-dir -r requirements.txt \
+ && pip install .
 
 # Copy SSD code and build
-COPY . .
-RUN pip install .
+##COPY . .
+##RUN pip install .
 
 # Configure environment variables
 ENV OMP_NUM_THREADS=1
